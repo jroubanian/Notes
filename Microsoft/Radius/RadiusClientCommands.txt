@@ -1,0 +1,114 @@
+RADIUS Client Commands
+05/29/2012
+4 minutes to read
+Applies To: Windows Server 2008
+
+This section contains the following commands.
+
+add client
+
+delete client
+
+rename client
+
+reset client
+
+set client
+
+show client
+
+For information on how to interpret netsh command syntax, see Formatting Legend.
+
+RADIUS client commands
+The following entries provide details for each command.
+
+ Important
+
+Client computers, such as wireless portable computers and other computers running client operating systems, are not RADIUS clients. RADIUS clients are network access servers—such as wireless access points, 802.1X-capable switches, virtual private network (VPN) servers, and dial-up servers—because they use the RADIUS protocol to communicate with RADIUS servers such as Network Policy Server (NPS) servers.
+
+add client
+Adds a RADIUS client to the Network Policy Server (NPS) configuration.
+
+Syntax
+add client [ name = ] name [ address = ] address [ state = ] Enable | Disable [ [ sharedsecret = ] sharedsecret [ requireauthattrib = ] Yes | No [ napcompatible = ] Yes | No [ vendorname = ] vendorname ] ]
+
+Parameters
+name
+Required. Specifies the friendly name of the RADIUS client.
+address
+Required. Specifies the Fully Qualified Domain Name (FQDN) or IP address of the RADIUS client.
+state
+Optional. Specifies whether the RADIUS client is enabled or disabled. The default is enabled.
+sharedsecret
+Optional. Specifies the shared secret that is also configured at the RADIUS client. The shared secret is used to validate messages between the RADIUS client and NPS.
+requireauthattrib
+Optional. Specifies whether verification for Access-Request messages is enabled or disabled. The default is disabled.
+napcompatible
+Optional. Specifies whether the RADIUS client is compatible with Network Access Protection (NAP). The default is No, which means that the RADIUS client is not compatible with Network Access Protection (NAP).
+vendor
+Optional. Specifies the RADIUS client vendor name. The default is RADIUS standard.
+Example
+In the following example, a NAP-compatible wireless access point is added as a RADIUS client to the NPS configuration. This RADIUS client has the name WirelessAP, the IP address 10.0.0.200, an enabled state, and a shared secret of 9vq7822hFsJ8rm.
+
+netsh nps add client name= WirelessAP address= 10.0.0.200 state=Enable sharedsecret=9vq7822hFsJ8rm napcompatible=Yes
+
+Remarks
+RADIUS clients are network access servers, such as a dial-up server, wireless access point, or virtual private network (VPN) server. Client computers, also called access clients, are not RADIUS clients.
+delete client
+Deletes one or more existing RADIUS clients.
+
+Syntax
+delete client [ name= ] name
+
+Parameters
+name
+Required. Specifies the friendly name of the RADIUS client that you want to delete. If more than one RADIUS client is specified, the friendly names must be separated by commas.
+Example
+Following is an example of the command usage. In this example, three wireless access points with the friendly names WirelessAP1, WirelessAP2, and WirelessAP3 are removed as RADIUS clients from the NPS configuration.
+
+delete client WirelessAP1,WirelessAP2,WirelessAP3
+
+rename client
+Changes the friendly name of a RADIUS client.
+
+Syntax
+rename client [ name = ] name [ newname = ] newname
+
+Parameters
+name
+Required. Specifies the friendly name of the RADIUS client that you want to rename.
+newname
+Required. Specifies the new friendly name for the RADIUS client.
+reset client
+Deletes all RADIUS clients that are configured in NPS.
+
+ Warning
+
+Do not run this command if you want to maintain any of the RADIUS client settings you have configured at the NPS server. This command deletes all RADIUS client settings that you have configured, and after running this command, your settings cannot be recovered. Before you run this command, it is recommended that you use the export command to save the NPS server configuration to an XML file.
+
+Syntax
+reset client
+
+set client
+Changes the value of one or more properties of an existing RADIUS client. This command cannot be used to change the RADIUS client friendly name. For other properties, values specified by this command overwrite the existing values.
+
+Syntax
+setclient [ name = ] name [ address = ] address [ state = ] Enable | Disable [ [ sharedsecret = ] sharedsecret [ requireauthattrib = ] Yes | No [ napcompatible = ] Yes | No [ vendorname = ] vendorname ] ]
+
+Parameters
+name
+Required. Specifies the RADIUS client friendly name. To change the RADIUS client friendly name, use the rename client command.
+address
+Optional. Specifies the Fully Qualified Domain Name (FQDN) or IP address of the RADIUS client.
+state
+Optional. Specifies whether the RADIUS client is enabled or disabled.
+sharedsecret
+Optional. Specifies the shared secret that is also configured at the RADIUS client. The shared secret is used to validate messages between the RADIUS client and NPS.
+requireauthattriube
+Optional. Specifies whether verification for Access-Request messages is enabled or disabled.
+napcompatible
+Optional. Specifies whether the RADIUS client is compatible with the Network Access Protection (NAP) feature of Network Policy Server (NPS).
+vendor
+Optional. Specifies the RADIUS client vendor name. The default is RADIUS standard.
+show client
+Displays the RADIUS client list for the local NPS server.

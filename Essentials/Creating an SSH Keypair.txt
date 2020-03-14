@@ -1,0 +1,22 @@
+# Creating an SSH KeyPair
+
+ssh-keygen -t rsa -f test-key
+Generating public/private rsa key pair.
+Enter passphrase (empty for no passphrase):  # this one was testing
+Enter same passphrase again:  # testing
+Your identification has been saved in test-key.
+Your public key has been saved in test-key.pub.
+The key fingerprint is:
+SHA256:xA09fwdhkH1/xU99s9laHv9dbKfLBxyCoJFpDxESKNo john.roubanian@NYC636JROUB-MAC
+The key's randomart image is:
++---[RSA 2048]----+
+|   .o.o=..  .+oo.|
+|. .  .*..oo ..o.B|
+|.o   . =o..+   +X|
+|. E   ... . o o+B|
+|        S    + B+|
+|              + B|
+|               +=|
+|             .. +|
+|              oo |
++----[SHA256]-----+

@@ -1,0 +1,23 @@
+/etc/ssh/sshd_config
+
+# Permits only the users defined in the AllowUsers to SSH into the host
+# AllowUsers Examples:
+AllowUsers john@hostname
+
+# Permits only the users defined in the AllowUsers to SSH into the host from a specific host
+AllowUsers john.roubanian@usnyc6nagiosxi01
+
+
+# Allow root ssh access only from a specific subnet
+
+root is denied ssh access by default
+
+1. enable root ssh
+2. restrict root ssh from only a specific subnet
+
+uncomment #PermitRootLogin yes
+add root to the AllowUsers line
+
+AllowUsers root@10.0.115.0/24
+
+systemctl restart sshd 
