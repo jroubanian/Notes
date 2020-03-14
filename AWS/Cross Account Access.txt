@@ -1,0 +1,31 @@
+Cross Account Access
+
+Scenario
+•	A user in account A needs access to a resource in account B
+•	Account A is the Trusted account (Account ID = 111111111)
+•	Account B is the Trusting account (Account ID = 222222222)
+Steps
+      In Account A
+1.	Get the Account A account #
+
+In Account B
+2.	Log into Account B, create policy/policies for the resources that need to be accessed
+3.	Create a new role for Another AWS Account, specify the Account A account #, then attach the policy/policies you created in previous step
+4.	Go to the role just created, and there is a section called “Give this link to users who can switch roles in the console”
+5.	Note the name of the role you just created
+
+In Account A
+6.	Create a new policy with the code specified below. Replace Account-ID with the Account ID from Account B, and the rolename with the name of the role created in the previous step
+{
+  "Version": "2012-10-17",
+  "Statement": {
+    "Effect": "Allow",
+    "Action": "sts:AssumeRole",
+    "Resource": "arn:aws:iam::ACCOUNT-ID:role/rolename"
+  }
+	}
+
+7.	Create a group
+8.	Attach AssumeRole policy you just created and Attach to the group
+9.	Add the users to the group
+10.	Give the users the URL of the role you created in Account B

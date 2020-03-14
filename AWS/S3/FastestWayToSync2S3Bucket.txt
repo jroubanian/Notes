@@ -1,0 +1,17 @@
+Fastest way to sync two Amazon S3 buckets
+Follow the below steps:
+1.	select the source folder
+2.	under the properties of the source folder choose advance setting
+3.	enable transfer acceleration and get the endpoint
+
+
+AWS configurations one time only (no need to repeat this every time)
+
+aws configure set default.region us-east-1 #set it to your default region
+aws configure set default.s3.max_concurrent_requests 2000
+aws configure set default.s3.use_accelerate_endpoint true
+
+
+These are set in your /.aws/config file
+
+aws s3 sync s3://source-test-1992/foldertobesynced/ s3://destination-test-1992/foldertobesynced/ --delete --endpoint-url http://soucre-test-1992.s3-accelerate.amazonaws.com

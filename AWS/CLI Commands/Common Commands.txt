@@ -1,0 +1,5 @@
+S3 Commands
+
+Create a bucket
+aws s3 mb s3://360i-mini-tech-archives --profile infra
+aws s3 mb s3://mybucket --region us-east-1 --profile infra
